@@ -59,9 +59,9 @@
                     const log = logs[logId];
                     const logElement = document.createElement('div');
                     logElement.innerHTML = `
-                        <p>圖片：<img src="${log.image_url}" alt="${log.name}" style="width:100px;height:auto;"></p>
-                        <p>名稱：${log.name}</p>
-                        <p class="datatime">時間：${log.timestamp}</p>
+                        <p>人臉截圖：<img src="${log.image_url}" alt="${log.name}" style="width:100px;height:auto;"></p>
+                        <p>User：${log.name}</p>
+                        <p class="datatime">進入時間：${log.timestamp}</p>
                         <hr>
                     `;
                     logsContainer.appendChild(logElement);
