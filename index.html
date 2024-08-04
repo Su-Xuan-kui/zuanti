@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        .datatime{
+            color: red;
+        }
+        button {
+            background-color: skyblue; /* 綠色背景 */
+            border: none; /* 無邊框 */
+            color: black; /* 白色字體 */
+            padding: 15px 26px; /* 內邊距 */
+            text-align: center; /* 文字居中 */
+            text-decoration: none; /* 無下劃線 */
+            display: inline-block; /* 行內塊元素 */
+            font-size: 16px; /* 字體大小 */
+            margin: 4px 2px; /* 外邊距 */
+            cursor: pointer; /* 鼠標指針樣式 */
+            border-radius: 8px; /* 圓角 */
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>「雲」管理開心農場</title>
@@ -43,9 +61,9 @@
 
                 const logElement = document.createElement('div');
                 logElement.innerHTML = `
-                    <p>圖片：<img src="${log.image_url}" alt="${log.name}" style="width:100px;height:auto;"></p>
-                    <p>名稱：${log.name}</p>
-                    <p>時間：${log.timestamp}</p>
+                    <p>人臉截圖：<img src="${log.image_url}" alt="${log.name}" style="width:100px;height:auto;"></p>
+                    <p>User：${log.name}</p>
+                    <p class="datatime">進入時間：${log.timestamp}</p>
                     <hr>
                 `;
                 logsContainer.appendChild(logElement);
