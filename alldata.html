@@ -6,8 +6,8 @@
     <title>「雲」管理開心農場</title>
 </head>
 <body>
-    <h1>門禁管制系統(最新一筆)</h1>
-    <button onclick="location.href='alldata.html'">歷史紀錄</button>
+    <h1>門禁管制系統(歷史紀錄)</h1>
+    <button onclick="location.href='index.html'">最新資料</button>
     <div id="logs"></div>
 
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
@@ -30,30 +30,29 @@
         // Reference to the database
         const dbRef = firebase.database().ref('logs');
 
-        // Function to fetch and display the latest log
-        function fetchLatestLog() {
-            // Fetch the latest log
-            dbRef.orderByKey().limitToLast(1).once('value', (snapshot) => {
+        // Function to fetch and display logs
+        function fetchLogs() {
+            dbRef.once('value', (snapshot) => {
                 const logs = snapshot.val();
                 const logsContainer = document.getElementById('logs');
                 logsContainer.innerHTML = '';
 
-                // Convert logs object to array and get the latest log
-                const log = Object.values(logs)[0];
-
-                const logElement = document.createElement('div');
-                logElement.innerHTML = `
-                    <p>圖片：<img src="${log.image_url}" alt="${log.name}" style="width:100px;height:auto;"></p>
-                    <p>名稱：${log.name}</p>
-                    <p>時間：${log.timestamp}</p>
-                    <hr>
-                `;
-                logsContainer.appendChild(logElement);
+                for (const logId in logs) {
+                    const log = logs[logId];
+                    const logElement = document.createElement('div');
+                    logElement.innerHTML = `
+                        <p>圖片：<img src="${log.image_url}" alt="${log.name}" style="width:100px;height:auto;"></p>
+                        <p>名稱：${log.name}</p>
+                        <p>時間：${log.timestamp}</p>
+                        <hr>
+                    `;
+                    logsContainer.appendChild(logElement);
+                }
             });
         }
 
-        // Fetch the latest log on page load
-        window.onload = fetchLatestLog;
+        // Fetch logs on page load
+        window.onload = fetchLogs;
     </script>
 </body>
 </html>
